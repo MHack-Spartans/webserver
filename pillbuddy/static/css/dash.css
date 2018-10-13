@@ -1,11 +1,6 @@
 body {
-    background-color: white;
+    background-color: #FFFFFF;
 }
-
-h2 {
-    font-size: 1.2em;
-}
-
 .bg-djg{
     background-color: #092327;
 }
@@ -15,8 +10,3 @@ h2 {
     background-image: url("../img/medicine.jpg");
     background-size: cover;
 }
-
-.description {
-    font-size: .8em;
-}
-
