@@ -1,0 +1,12 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    function call_counter(slot) {
+        $.get('{{ request.get_full_path }}dispense/' + slot + '/', function (data) {
+            alert("Dispense request sent.");
+        });
+    }
+</script>
+
+<button onclick="call_counter(1);">1</button>
+<button onclick="call_counter(2);">2</button>
+<button onclick="call_counter(3);">3</button>
