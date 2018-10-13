@@ -5,7 +5,7 @@ from . import mqtt
 from dashboard.models import Drug
 
 def dashboard(request):
-    advil = Drug.objects.get(name='advil')
+    advil = Drug(name='advil')
     return render(request, 'dashboard.html', {'drug':advil})
 
 def dispense(request, slot):

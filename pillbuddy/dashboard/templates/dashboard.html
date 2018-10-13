@@ -14,8 +14,40 @@
 </head>
 
 <body>
-    <p id="time"></p>
-    <p id="date"></p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-djg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav mx-auto">
+                        <a class="navbar-brand" style="color:white;">
+                            {% load static %}
+                            <img src="{% static 'img/logo.png' %}" width="30" height="40" alt="">&nbsp;Pill&nbsp;Buddy
+                        </a>
+                </ul>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+    <p class="m5"></p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm">
+                    <p id="time"></p>
+                    <p id="date"></p>
+            </div>
+            <div class="col-sm">
+                <h2 id="drugName1">Drug 1</h2>
+            </div>
+            <div class="col-sm">
+                <h2 id="drugName2">Drug 2</h2>
+            </div>
+            <div class="col-sm">
+                <h2 id="drugName3">Drug 3</h2>
+            </div>
+        </div>
+    </div>
+    
 
     <script>
         var d = new Date();
