@@ -1,0 +1,43 @@
+<!DOCTYPE <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}Pill Buddy{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        {% include 'css.html' %}
+        
+        
+    </head>
+<body>
+    {% block navbar %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-djg">
+        <a class="navbar-brand" href="#">
+            {% load static %}
+            <img src="{% static 'img/logo.jpg' %}" width="30" height="30" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+
+            </ul>
+        <a href="login.html" class="btn btn-outline-light">Login</a>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    {% endblock %}
+
+    {% block content %}
+        <p class="mb-4">Basic template with no content</p>
+    {% endblock %}
+
+    {% include 'js.html' %}
+</body>
+</html>
