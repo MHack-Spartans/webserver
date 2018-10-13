@@ -10,5 +10,5 @@ def dashboard(request):
 
 def dispense(request, slot):
     print("Dispense slot:", slot)
-    mqtt.publish_dispense_now(slot, 1)
+    mqtt.publish_dispense_now(slot, 2)
     return HttpResponse("")

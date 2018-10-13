@@ -1,1 +1,12 @@
 {% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<div class="text-center form-signin">
+    <h2>Your account has been created!</h2>
+    <h4><a href="{% url 'login' %}">Login</a></h4>
+</div>
+
+{% endblock %}
