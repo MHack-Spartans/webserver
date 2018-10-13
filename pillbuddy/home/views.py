@@ -33,9 +33,13 @@ def login(request):
 
 def setup(request):
     try:
-        drug1 = Drug.objects.get(slot = '1')
-    except drug1.DoesNotExist:
-        drug1 = Drug(name = "fill")
+        drug1 = Drug.objects.get(slot = 1)
+    except:
+        drug1 = Drug.objects.create(name = "advil",
+        short_desc="pain rel.",
+        per_day="12",
+        pillsTaken="15",
+        slot="1")
         drug1.save()
     drugform = SetUpDrugForm(request.POST or None)
 
