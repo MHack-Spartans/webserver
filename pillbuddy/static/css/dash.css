@@ -1,0 +1,12 @@
+body {
+    background-color: #FFFFFF;
+}
+.bg-djg{
+    background-color: #092327;
+}
+
+
+.jumbotron {
+    background-image: url("../img/medicine.jpg");
+    background-size: cover;
+}

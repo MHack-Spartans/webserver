@@ -1,12 +1,32 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    function call_counter(slot) {
-        $.get('{{ request.get_full_path }}dispense/' + slot + '/', function (data) {
-            alert("Dispense request sent.");
-        });
-    }
-</script>
+<!DOCTYPE html>
+<html>
 
-<button onclick="call_counter(1);">1</button>
-<button onclick="call_counter(2);">2</button>
-<button onclick="call_counter(3);">3</button>
+<head>
+    {% include 'css.html' %}
+    {% include 'js.html' %}
+    <script>
+        function call_counter(slot) {
+            $.get('{{ request.get_full_path }}dispense/' + slot + '/', function (data) {
+                alert("Dispense request sent.");
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <p id="time"></p>
+    <p id="date"></p>
+
+    <script>
+        var d = new Date();
+        document.getElementById("date").innerHTML = d.toDateString();
+        document.getElementById("time").innerHTML = d.toTimeString().split(":")[0]+':'+d.toTimeString().split(":")[1]
+    </script>
+
+    <button onclick="call_counter(1);">{{drug.name}}</button>
+    <button onclick="call_counter(2);">2</button>
+    <button onclick="call_counter(3);">3</button>
+
+</body>
+
+</html>
