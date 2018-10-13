@@ -28,9 +28,15 @@
                         <img src="{% static 'img/logo.png' %}" width="30" height="40" alt="">&nbsp;Pill&nbsp;Buddy
                     </a>
             </ul>
+            {% if user.is_authenticated %}
             <ul class="nav navbar-nav ml-auto">
-                    <a href="{% url 'login' %}" class="btn btn-outline-light">Login</a>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-light">{{request.user.first_name}}</a>
+             </ul>
+            {% else %}
+            <ul class="nav navbar-nav ml-auto">
+                   <a href="{% url 'login' %}" class="btn btn-outline-light">Login</a>
             </ul>
+            {% endif %}
         </div>
     </nav>
     <!-- End Navbar -->

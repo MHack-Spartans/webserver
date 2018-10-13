@@ -4,7 +4,7 @@
 
 {% block content %}
 <!-- Login Form -->
-<form class="text-center form-signin">
+<div class="text-center form-signin">
     {% load static %}
     <p class="m3"></p>
     {% if next %}
@@ -34,11 +34,10 @@
         <button type="submit" class="btn btn-lg btn-outline-dark btn-block">Login</button>
         <input type="hidden" name="next" value="{{ next }}">
     </form>
-
     <p class="m3"></p>
-    <a href="forgot_pwd.html" class="btn btn-outline-dark">Forgot Password?</a>
+    <a href="{% url 'password_reset' %}" class="btn btn-outline-dark">Forgot Password?</a>
     <p class="mt-5 mb-3 text-muted"><a class="nav-link" href="https://mhacks.org">MHacks 2018</a></p>
-</form>
+</div>
 <!-- End Login Form -->
 
 {% endblock %}
