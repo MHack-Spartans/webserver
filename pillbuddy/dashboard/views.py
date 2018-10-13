@@ -5,10 +5,10 @@ from . import mqtt
 from dashboard.models import Drug
 
 def dashboard(request):
-    drug1,create = Drug.objects.get_or_create(slot=1)
-    drug2,create = Drug.objects.get_or_create(slot=2)
-    drug3,create = Drug.objects.get_or_create(slot=3)
-    return render(request, 'dashboard.html', {'drug1':drug1,'drug2':drug2,'drug3':drug3})
+    drug1 = Drug.objects.get(slot = 1)
+    drug2 = Drug.objects.get(slot = 2)
+    drug3 = Drug.objects.get(slot = 3)
+    return render(request, 'dashboard.html', {'drug1':drug1})
 
 def dispense(request, slot):
     print("Dispense slot:", slot)
