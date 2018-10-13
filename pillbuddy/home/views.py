@@ -22,8 +22,3 @@ def register(request):
 
 def register_success(request):
     return render(request, 'registration/register_success.html')
-
-def login(request):
-    return render(request, 'registration/login.html',{})
-
-
