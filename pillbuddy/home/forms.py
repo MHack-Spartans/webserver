@@ -3,6 +3,7 @@ from django.forms import EmailField
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 class UserCreationForm(UserCreationForm):
@@ -31,3 +32,27 @@ class UserCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+class SetUpDrugForm(forms.Form):
+    Name = forms.CharField(max_length=30, required=True)
+    Description = forms.CharField(max_length=30, required=True)
+    MaxPerDay = forms.IntegerField(required = True)
+    TakenToday = forms.IntegerField(required = True)
+    Slot = forms.IntegerField(required = True)
+
+    def clean_Name(self):
+        data = self.cleaned_data['Name']
+        return data
+    def clean_Description(self):
+        data = self.cleaned_data['Description']
+        return data
+    def clean_MaxPerDay(self):
+        data = self.cleaned_data['MaxPerDay']
+        return data
+    def clean_TakenToday(self):
+        data = self.cleaned_data['TakenToday']
+        return data
+    def clean_Slot(self):
+        data = self.cleaned_data['Slot']
+        return data
+
+
