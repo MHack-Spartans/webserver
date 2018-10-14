@@ -20,11 +20,17 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
-                <ul class="nav navbar-nav mx-auto">
+                <ul class="nav navbar-nav mr-auto">
+                        <h2 id="time" style="color:white;"></h2> 
+                </ul>
+                <ul class="nav navbar-nav ml-5">
                         <a class="navbar-brand" style="color:white;">
                             {% load static %}
                             <img src="{% static 'img/logo.png' %}" width="30" height="40" alt="">&nbsp;Pill&nbsp;Buddy
                         </a>
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                        <h2 id="date" style="color:white;"></h2> 
                 </ul>
             </div>
         </nav>
@@ -32,18 +38,29 @@
     <p class="m5"></p>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm">
-                    <p id="time"></p>
-                    <p id="date"></p>
+            <div class="col-sm mr-auto">
+                <h2 id="drugName1">{{drug1.name}}</h2>
+                <p>Description:<br>{{drug1.short_desc}}</p>
+                <p>Max amount per day:&nbsp;{{drug1.per_day}}</p>
+                <p>Amount taken today:&nbsp;{{drug1.pillsTaken}}</p>
+                <p id="drugAmount1">0</p>
+                <button class="btn btn-outline-dark" onclick="call_counter(1);">Dispense</button>
             </div>
-            <div class="col-sm">
-                <h2 id="drugName1">Drug 1</h2>
+            <div class="col-sm mx-auto">
+                <h2 id="drugName2">{{drug2.name}}</h2>
+                <p>Description:<br>{{drug2.short_desc}}</p>
+                <p>Max amount per day:&nbsp;{{drug2.per_day}}</p>
+                <p>Amount taken today:&nbsp;{{drug2.pillsTaken}}</p>
+                <p id="drugAmount2">0</p>
+                <button class="btn btn-outline-dark" onclick="call_counter(2);">Dispense</button>
             </div>
-            <div class="col-sm">
-                <h2 id="drugName2">Drug 2</h2>
-            </div>
-            <div class="col-sm">
-                <h2 id="drugName3">Drug 3</h2>
+            <div class="col-sm mr-auto">
+                <h2 id="drugName3">{{drug3.name}}</h2>
+                <p>Description:<br>{{drug3.short_desc}}</p>
+                <p>Max amount per day:&nbsp;{{drug3.per_day}}</p>
+                <p>Amount taken today:&nbsp;{{drug3.pillsTaken}}</p>
+                <p id="drugAmount2">0</p>
+                <button class="btn btn-outline-dark" onclick="call_counter(3);">Dispense</button>
             </div>
         </div>
     </div>
@@ -54,11 +71,6 @@
         document.getElementById("date").innerHTML = d.toDateString();
         document.getElementById("time").innerHTML = d.toTimeString().split(":")[0]+':'+d.toTimeString().split(":")[1]
     </script>
-
-    <button class="btn btn-outline-dark" onclick="call_counter(1);">{{drug1.name}}</button>
-    <button class="btn btn-outline-dark" onclick="call_counter(2);">2</button>
-    <button class="btn btn-outline-dark" onclick="call_counter(3);">3</button>
-
 </body>
 
 </html>
