@@ -10,6 +10,7 @@ from dashboard.models import Schedule
 from .forms import SetUpDrugForm
 from .forms import SetUpSchedule
 import json
+from django.views import generic
 
 def home(request):
     return render(request, 'index.html', {})
@@ -87,4 +88,18 @@ def schedule(request):
         return HttpResponseRedirect(reverse('home') )
     return render(request, 'setup.html', {"thing":scheduleForm})
 
+from django.views import generic
+from django.urls import reverse_lazy
 
+class ScheduleListView(generic.ListView):
+    model = Schedule
+    paginate_by = 10
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+class ScheduleCreate(CreateView):
+    model = Schedule
+    fields = '__all__'
+
+class ScheduleDelete(DeleteView):
+    model = Schedule
+    success_url = reverse_lazy('schedule_list')

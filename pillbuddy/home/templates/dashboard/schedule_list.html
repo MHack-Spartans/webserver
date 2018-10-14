@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Schedule List</h1>
+
+    {% if schedule_list %}
+    <ul>
+
+      {% for schedule in schedule_list %}
+      <li>
+        <a href="{% url 'schedule_delete' pk=schedule.id %}">{{ schedule.drugs }}</a> ({{schedule.frequency}}){{schedule.first_dispense}}
+
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no schedules.</p>
+    {% endif %}       
+{% endblock %}
