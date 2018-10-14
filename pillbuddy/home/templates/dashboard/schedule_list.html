@@ -4,6 +4,8 @@
 <div class="container">
   <h1>Scheduled Pills</h1>
   <p>A list of all scheduled pill dispenses.</p>
+  <a class="btn btn-outline-dark" href="{% url 'schedule' %}">Add New</a>
+  <br><br>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -11,6 +13,7 @@
         <th scope="col">Frequency</th>
         <th scope="col">Next Dispense</th>
         <th scope="col">Amount</th>
+        <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +23,7 @@
         <td>{{ schedule.frequency }}</td>
         <td>{{ schedule.next_dispense }}</td>
         <td>{{ schedule.amount }}</td>
+        <td class="text-center"><a href="{% url 'schedule_delete' pk=schedule.id %}" class="far fa-trash-alt" style="color:red;"></a></td>
       </tr>
       {% endfor %}
     </tbody>

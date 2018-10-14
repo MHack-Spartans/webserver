@@ -5,6 +5,8 @@ from . import mqtt
 from datetime import datetime,timedelta
 from dashboard.models import Drug
 from dashboard.models import Schedule
+import pytz
+
 
 def dashboard(request):
     drug1 = Drug.objects.get(slot = 1)
@@ -15,7 +17,10 @@ def dashboard(request):
     drug = None
     for item in a:
         if item.next_dispense is not None:
-            if item.next_dispense < datetime.now():
+            utc=pytz.UTC
+            a = item.next_dispense
+            b = utc.localize(datetime.now()) 
+            if a < b:
                 send = item
     if send is not None:
         if send.frequency == 'weekly':
@@ -42,6 +47,7 @@ def dispense(request, slot, amount):
         if item.next_dispense is not None:
             if item.next_dispense < datetime.now():
                 send = item
+                print(send)
     if send is not None:
         if send.frequency == 'weekly':
             send.next_dispense = send.next_dispense+timedelta(days=7)
