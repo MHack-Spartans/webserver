@@ -19,3 +19,7 @@ h2 {
 .description {
     font-size: .8em;
 }
+
+.elementBorder {
+    border-style: solid;
+}
