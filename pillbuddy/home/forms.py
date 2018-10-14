@@ -58,7 +58,7 @@ class SetUpDrugForm(forms.Form):
 
 
 class SetUpSchedule(forms.Form):
-    stuff=[(1,Drug.objects.get(slot=1).name),(2,Drug.objects.get(slot=2).name),(3,Drug.objects.get(slot=3).name)]
+    stuff=[(Drug.objects.get(slot=1).name,Drug.objects.get(slot=1).name),(Drug.objects.get(slot=2).name,Drug.objects.get(slot=2).name),(Drug.objects.get(slot=3).name,Drug.objects.get(slot=3).name)]
     Medicine = forms.ChoiceField(choices=stuff)
     Frequency = forms.ChoiceField(choices=[('Weekly','weekly'),('Daily','daily')])
     start_date = forms.DateField(widget=forms.SelectDateWidget())
