@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'dashboard',
-    'widget_tweaks'
+    'widget_tweaks',
+    'django_cron'
 ]
 
 MIDDLEWARE = [
