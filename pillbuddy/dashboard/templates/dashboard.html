@@ -4,13 +4,6 @@
 <head>
     {% include 'css.html' %}
     {% include 'js.html' %}
-    <script>
-        function call_counter(slot) {
-            $.get('{{ request.get_full_path }}dispense/' + slot + '/', function (data) {
-                alert("Dispense request sent.");
-            });
-        }
-    </script>
 </head>
 
 <body>
@@ -45,11 +38,11 @@
                 <p>Amount taken today:&nbsp;{{drug1.pillsTaken}}</p>
                 <div class="row">
                         <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount1')">&nbsp;-&nbsp;</btn>
-                        <h2 class="mx-4" id="drugAmount1">0</h2>
+                        <h2 class="mx-4" id="drugAmount1">1</h2>
                         <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount1',{{drug1.per_day}})">&nbsp;+&nbsp;</btn>
                 </div>
                 <p class="m3"></p>
-                <button class="btn btn-outline-dark  ml-4" onclick="call_counter(1);">Dispense</button>
+                <button class="btn btn-outline-dark  ml-4" onclick="call_counter(1, 'drugAmount1');">Dispense</button>
             </div>
             <div class="col-sm mx-auto">
                 <h2 id="drugName2">{{drug2.name}}</h2>
@@ -58,11 +51,11 @@
                 <p>Amount taken today:&nbsp;{{drug2.pillsTaken}}</p>
                 <div class="row">
                         <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount2')">&nbsp;-&nbsp;</btn>
-                        <h2 class="mx-4" id="drugAmount2">0</h2>
+                        <h2 class="mx-4" id="drugAmount2">1</h2>
                         <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount2',{{drug2.per_day}})">&nbsp;+&nbsp;</btn>
                 </div>
                 <p class="m3"></p>
-                <button class="btn btn-outline-dark  ml-4" onclick="call_counter(2);">Dispense</button>
+                <button class="btn btn-outline-dark  ml-4" onclick="call_counter(2, 'drugAmount2');">Dispense</button>
             </div>
             <div class="col-sm mr-auto">
                 <h2 id="drugName3">{{drug3.name}}</h2>
@@ -71,11 +64,11 @@
                 <p>Amount taken today:&nbsp;{{drug3.pillsTaken}}</p>
                 <div class="row">
                         <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount3')">&nbsp;-&nbsp;</btn>
-                        <h2 class="mx-4" id="drugAmount3">0</h2>
+                        <h2 class="mx-4" id="drugAmount3">1</h2>
                         <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount3',{{drug3.per_day}})">&nbsp;+&nbsp;</btn>
                 </div>
                 <p class="m3"></p>
-                <button class="btn btn-outline-dark ml-4" onclick="call_counter(3);">Dispense</button>
+                <button class="btn btn-outline-dark ml-4" onclick="call_counter(3, 'drugAmount3');">Dispense</button>
             </div>
         </div>
     </div>
@@ -104,6 +97,12 @@
             else { value--; }
             
             document.getElementById(id).innerHTML = value;
+        }
+        function call_counter(slot, amount_id) {
+            amount = document.getElementById(amount_id).innerHTML;
+            $.get('{{ request.get_full_path }}dispense/' + slot + '/' + amount + '/', function (data) {
+                //alert("Dispense request sent.");
+            });
         }
     </script>
 </body>

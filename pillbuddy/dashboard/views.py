@@ -10,7 +10,7 @@ def dashboard(request):
     drug3 = Drug.objects.get(slot = 3)
     return render(request, 'dashboard.html', {'drug1':drug1,'drug2':drug2,'drug3':drug3})
 
-def dispense(request, slot):
+def dispense(request, slot, amount):
     print("Dispense slot:", slot)
-    mqtt.publish_dispense_now(slot, 2)
+    mqtt.publish_dispense_now(slot, amount)
     return HttpResponse("")
