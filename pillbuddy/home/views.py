@@ -73,14 +73,16 @@ def schedule(request):
     if request.method == 'POST' and scheduleForm.is_valid():
 
         # Create a form instance and populate it with data from the request (binding):        # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-        schedule1 = Schedule.objects.create(drugs = "[advil]",
+        schedule1 = Schedule.objects.create(drug = "[advil]",
             frequency = "daily",
-            first_dispense = datetime.now()
+            next_dispense = datetime.now(),
+            amount = 1
         )
         schedule1.save() 
-        schedule1.drugs = json.dumps(scheduleForm.cleaned_data['Medicines'])
+        schedule1.drug = json.dumps(scheduleForm.cleaned_data['Medicine'])
         schedule1.frequency = scheduleForm.cleaned_data['Frequency']
-        schedule1.first_dispense = datetime.combine(scheduleForm.cleaned_data['start_date'],scheduleForm.cleaned_data['start_time'])
+        schedule1.next_dispense = datetime.combine(scheduleForm.cleaned_data['start_date'],scheduleForm.cleaned_data['start_time'])
+        schedule1.amount =  scheduleForm.cleaned_data['amount']
         schedule1.save()
         # redirect to a new URL:
         return HttpResponseRedirect(reverse('home') )

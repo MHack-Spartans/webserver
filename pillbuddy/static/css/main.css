@@ -22,4 +22,49 @@ h2 {
 
 .elementBorder {
     border-style: solid;
+    border-radius: 10px;
+    border-width: thin;
+
+    background-color: rgba(80,208,125,.25)
 }
+
+.row {
+    align-content: center;
+    text-align: center;
+}
+
+.drugCounter {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.dashboardBackground {
+    /*  ; */
+    background-color: white;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  
+    display: block;
+    width: 100%;
+    height: 100%;
+  
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    transform: scale(1.1);
+
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;  
+}
+
+.content {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+  }
