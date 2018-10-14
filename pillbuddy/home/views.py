@@ -73,7 +73,7 @@ def schedule(request):
     if request.method == 'POST' and scheduleForm.is_valid():
 
         # Create a form instance and populate it with data from the request (binding):        # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-        schedule1 = Schedule.objects.create(drug = "[advil]",
+        schedule1 = Schedule.objects.create(drug = "advil",
             frequency = "daily",
             next_dispense = datetime.now(),
             amount = 1
