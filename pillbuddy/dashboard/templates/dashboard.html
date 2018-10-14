@@ -49,14 +49,11 @@
                     <p>{{drug1.short_desc}}</p>
                     <p>Daily Amount:&nbsp;{{drug1.per_day}}</p>
                     <p>Amount taken today:&nbsp;{{drug1.pillsTaken}}</p>
-<<<<<<< HEAD
                     <p class="m5"><br><br><br><br></p>
-=======
->>>>>>> 1804760bac01e456f243943998184a7a23539a43
                     <div class="row drugCounter">
                         <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount1')">-</btn>
-                        <h2 class="mx-4" id="drugAmount1">1</h2>
-                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount1',{{drug1.per_day}})">+</btn>
+                        <h2 class="mx-4" id="drugAmount1">0</h2>
+                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount1',{{drug1.per_day}}, {{drug1.pillsTaken}})">+</btn>
                     </div>
                     <p class="m3"></p>
                     <button class="btn btn-outline-dark" onclick="call_counter(1, 'drugAmount1');">Dispense</button>
@@ -66,14 +63,11 @@
                     <p>{{drug2.short_desc}}</p>
                     <p>Daily Amount:&nbsp;{{drug2.per_day}}</p>
                     <p>Amount taken today:&nbsp;{{drug2.pillsTaken}}</p>
-<<<<<<< HEAD
                     <p class="m5"><br><br><br><br></p>
-=======
->>>>>>> 1804760bac01e456f243943998184a7a23539a43
                     <div class="row drugCounter">
                         <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount2')">-</btn>
-                        <h2 class="mx-4" id="drugAmount2">1</h2>
-                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount2',{{drug2.per_day}})">+</btn>
+                        <h2 class="mx-4" id="drugAmount2">0</h2>
+                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount2',{{drug2.per_day}},{{drug2.pillsTaken}})">+</btn>
                     </div>
                     <p class="m3"></p>
                     <button class="btn btn-outline-dark" onclick="call_counter(2, 'drugAmount2');">Dispense</button>
@@ -83,14 +77,11 @@
                     <p>{{drug3.short_desc}}</p>
                     <p>Daily Amount:&nbsp;{{drug3.per_day}}</p>
                     <p>Amount taken today:&nbsp;{{drug3.pillsTaken}}</p>
-<<<<<<< HEAD
                     <p class="m5"><br><br><br><br></p>
-=======
->>>>>>> 1804760bac01e456f243943998184a7a23539a43
                     <div class="row drugCounter">
                         <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount3')">-</btn>
-                        <h2 class="mx-4" id="drugAmount3">1</h2>
-                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount3',{{drug3.per_day}})">+</btn>
+                        <h2 class="mx-4" id="drugAmount3">0</h2>
+                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount3',{{drug3.per_day}},{{drug3.pillsTaken}})">+</btn>
                     </div>
                     <p class="m3"></p>
                     <button class="btn btn-outline-dark" onclick="call_counter(3, 'drugAmount3');">Dispense</button>
@@ -104,13 +95,21 @@
         document.getElementById("date").innerHTML = d.toDateString();
         document.getElementById("time").innerHTML = d.toTimeString().split(":")[0] + ':' + d.toTimeString().split(":")[1]
 
-        function incrementValue(id, max) {
+        function incrementValue(id, max, taken) {
             var value = parseInt(document.getElementById(id).innerHTML, 10);
             value = isNaN(value) ? 0 : value;
-            if (value >= max) { alert("Max pills reached.") }
-            else { value++; }
-
+            alert(taken);
+            if (value >= max || taken + value >= max) 
+            { 
+                value = 0;
+                alert("Max pills reached.");
+            }
+            else 
+            { 
+                value++; 
+            }
             document.getElementById(id).innerHTML = value;
+            
         }
 
         function decrementValue(id) {
