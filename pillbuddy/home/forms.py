@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
+from dashboard.models import Drug
 
 
 class UserCreationForm(UserCreationForm):
@@ -55,4 +56,23 @@ class SetUpDrugForm(forms.Form):
         data = self.cleaned_data['Slot']
         return data
 
+
+class SetUpSchedule(forms.Form):
+    stuff=[(1,Drug.objects.get(slot=1).name),(2,Drug.objects.get(slot=2).name),(3,Drug.objects.get(slot=3).name)]
+    Medicines = forms.MultipleChoiceField(choices=stuff, widget=forms.CheckboxSelectMultiple())
+    Frequency = forms.ChoiceField(choices=[('Weekly','weekly'),('Daily','daily')])
+    start_date = forms.DateField(widget=forms.SelectDateWidget())
+    start_time = forms.TimeField()
+    def clean_Medicines(self):
+        data = self.cleaned_data['Medicines']
+        return data
+    def clean_Frequency(self):
+        data = self.cleaned_data['Frequency']
+        return data
+    def clean_start_date(self):
+        data = self.cleaned_data['start_date']
+        return data
+    def clean_start_time(self):
+        data = self.cleaned_data['start_time']
+        return data
 

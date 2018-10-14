@@ -2,11 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from datetime import datetime
 from .forms import UserCreationForm 
 from django.shortcuts import redirect
 from dashboard.models import Drug
+from dashboard.models import Schedule
 from .forms import SetUpDrugForm
+from .forms import SetUpSchedule
+import json
 
 def home(request):
     return render(request, 'index.html', {})
@@ -32,33 +35,54 @@ def login(request):
     return render(request, 'registration/login.html',{})
 
 def setup(request):
-    try:
-        drug1 = Drug.objects.get(slot = 1)
-    except:
-        drug1 = Drug.objects.create(name = "advil",
-        short_desc="pain rel.",
-        per_day="12",
-        pillsTaken="15",
-        slot="1")
-        drug1.save()
+
     drugform = SetUpDrugForm(request.POST or None)
 
     # If this is a POST request then process the Form data
     if request.method == 'POST' and drugform.is_valid():
 
         # Create a form instance and populate it with data from the request (binding):        # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+        try:
+            drug1 = Drug.objects.get(slot = drugform.cleaned_data['Slot'])
+        except:
+            drug1 = Drug.objects.create(name = "advil",
+                short_desc="pain rel.",
+                per_day="12",
+                pillsTaken="15",
+                slot="1")
+            drug1.save()
         drug1.name = drugform.cleaned_data['Name']
         drug1.short_desc = drugform.cleaned_data['Description']
         drug1.per_day = drugform.cleaned_data['MaxPerDay']
         drug1.pillsTaken = drugform.cleaned_data['TakenToday']
         drug1.slot = drugform.cleaned_data['Slot']
         drug1.save()
-
         # redirect to a new URL:
         return HttpResponseRedirect(reverse('home') )
     else:
         context =  SetUpDrugForm()
 
     return render(request, 'setup.html', {"thing":context})
+
+def schedule(request):
+
+    scheduleForm = SetUpSchedule(request.POST or None)
+
+    # If this is a POST request then process the Form data
+    if request.method == 'POST' and scheduleForm.is_valid():
+
+        # Create a form instance and populate it with data from the request (binding):        # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+        schedule1 = Schedule.objects.create(drugs = "[advil]",
+            frequency = "daily",
+            first_dispense = datetime.now()
+        )
+        schedule1.save() 
+        schedule1.drugs = json.dumps(scheduleForm.cleaned_data['Medicines'])
+        schedule1.frequency = scheduleForm.cleaned_data['Frequency']
+        schedule1.first_dispense = datetime.combine(scheduleForm.cleaned_data['start_date'],scheduleForm.cleaned_data['start_time'])
+        schedule1.save()
+        # redirect to a new URL:
+        return HttpResponseRedirect(reverse('home') )
+    return render(request, 'setup.html', {"thing":scheduleForm})
 
 

@@ -10,9 +10,7 @@ class Drug(models.Model):
 
 
 class Schedule(models.Model):
-    drug = models.CharField(max_length=30)
-    amount = models.IntegerField()
-    slot = models.IntegerField()
+    drugs = models.TextField(null=True)
     frequency = models.CharField(max_length=30)
-    first_dispense = models.DateField
-    most_recent = models.DateField
+    first_dispense = models.DateField()
+    objects = models.Manager()
