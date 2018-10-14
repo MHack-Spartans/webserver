@@ -59,12 +59,13 @@ class SetUpDrugForm(forms.Form):
 
 class SetUpSchedule(forms.Form):
     stuff=[(1,Drug.objects.get(slot=1).name),(2,Drug.objects.get(slot=2).name),(3,Drug.objects.get(slot=3).name)]
-    Medicines = forms.MultipleChoiceField(choices=stuff, widget=forms.CheckboxSelectMultiple())
+    Medicine = forms.ChoiceField(choices=stuff)
     Frequency = forms.ChoiceField(choices=[('Weekly','weekly'),('Daily','daily')])
     start_date = forms.DateField(widget=forms.SelectDateWidget())
     start_time = forms.TimeField()
-    def clean_Medicines(self):
-        data = self.cleaned_data['Medicines']
+    amount = forms.IntegerField()
+    def clean_Medicine(self):
+        data = self.cleaned_data['Medicine']
         return data
     def clean_Frequency(self):
         data = self.cleaned_data['Frequency']
@@ -74,5 +75,8 @@ class SetUpSchedule(forms.Form):
         return data
     def clean_start_time(self):
         data = self.cleaned_data['start_time']
+        return data
+    def clean_amount(self):
+        data = self.cleaned_data['amount']
         return data
 
