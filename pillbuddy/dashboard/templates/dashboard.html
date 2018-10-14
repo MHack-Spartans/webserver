@@ -7,95 +7,95 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-djg">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="content">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-djg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
-                        <h2 id="time" style="color:white;"></h2> 
+                    <h2 id="time" style="color:white;"></h2>
                 </ul>
                 <ul class="nav navbar-nav ml-5">
-                        <a class="navbar-brand" style="color:white;">
-                            {% load static %}
-                            <img src="{% static 'img/logo.png' %}" width="30" height="40" alt="">&nbsp;Pill&nbsp;Buddy
-                        </a>
+                    <a class="navbar-brand" style="color:white;">
+                        {% load static %}
+                        <img src="{% static 'img/logo.png' %}" width="30" height="40" alt="">&nbsp;Pill&nbsp;Buddy
+                    </a>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
-                        <h2 id="date" style="color:white;"></h2> 
+                    <h2 id="date" style="color:white;"></h2>
                 </ul>
             </div>
         </nav>
         <!-- End Navbar -->
-    <p class="m5"></p>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm mr-auto">
-                <h2 id="drugName1">{{drug1.name}}</h2>
-                <p>{{drug1.short_desc}}</p>
-                <p>Daily Amount:&nbsp;{{drug1.per_day}}</p>
-                <p>Amount taken today:&nbsp;{{drug1.pillsTaken}}</p>
-                <div class="row">
-                        <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount1')">&nbsp;-&nbsp;</btn>
+        <p class="m5"></p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm mx-3 elementBorder">
+                    <h2 id="drugName1">{{drug1.name}}</h2>
+                    <p>{{drug1.short_desc}}</p>
+                    <p>Daily Amount:&nbsp;{{drug1.per_day}}</p>
+                    <p>Amount taken today:&nbsp;{{drug1.pillsTaken}}</p>
+                    <div class="row drugCounter">
+                        <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount1')">-</btn>
                         <h2 class="mx-4" id="drugAmount1">1</h2>
-                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount1',{{drug1.per_day}})">&nbsp;+&nbsp;</btn>
+                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount1',{{drug1.per_day}})">+</btn>
+                    </div>
+                    <p class="m3"></p>
+                    <button class="btn btn-outline-dark" onclick="call_counter(1, 'drugAmount1');">Dispense</button>
                 </div>
-                <p class="m3"></p>
-                <button class="btn btn-outline-dark  ml-4" onclick="call_counter(1, 'drugAmount1');">Dispense</button>
-            </div>
-            <div class="col-sm mx-auto">
-                <h2 id="drugName2">{{drug2.name}}</h2>
-                <p>{{drug2.short_desc}}</p>
-                <p>Daily Amount:&nbsp;{{drug2.per_day}}</p>
-                <p>Amount taken today:&nbsp;{{drug2.pillsTaken}}</p>
-                <div class="row">
-                        <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount2')">&nbsp;-&nbsp;</btn>
+                <div class="col-sm mx-3 elementBorder">
+                    <h2 id="drugName2">{{drug2.name}}</h2>
+                    <p>{{drug2.short_desc}}</p>
+                    <p>Daily Amount:&nbsp;{{drug2.per_day}}</p>
+                    <p>Amount taken today:&nbsp;{{drug2.pillsTaken}}</p>
+                    <div class="row drugCounter">
+                        <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount2')">-</btn>
                         <h2 class="mx-4" id="drugAmount2">1</h2>
-                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount2',{{drug2.per_day}})">&nbsp;+&nbsp;</btn>
+                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount2',{{drug2.per_day}})">+</btn>
+                    </div>
+                    <p class="m3"></p>
+                    <button class="btn btn-outline-dark  ml-4" onclick="call_counter(2, 'drugAmount2');">Dispense</button>
                 </div>
-                <p class="m3"></p>
-                <button class="btn btn-outline-dark  ml-4" onclick="call_counter(2, 'drugAmount2');">Dispense</button>
-            </div>
-            <div class="col-sm mr-auto">
-                <h2 id="drugName3">{{drug3.name}}</h2>
-                <p>{{drug3.short_desc}}</p>
-                <p>Daily Amount:&nbsp;{{drug3.per_day}}</p>
-                <p>Amount taken today:&nbsp;{{drug3.pillsTaken}}</p>
-                <div class="row">
-                        <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount3')">&nbsp;-&nbsp;</btn>
+                <div class="col-sm mx-3 elementBorder">
+                    <h2 id="drugName3">{{drug3.name}}</h2>
+                    <p>{{drug3.short_desc}}</p>
+                    <p>Daily Amount:&nbsp;{{drug3.per_day}}</p>
+                    <p>Amount taken today:&nbsp;{{drug3.pillsTaken}}</p>
+                    <div class="row drugCounter">
+                        <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount3')">-</btn>
                         <h2 class="mx-4" id="drugAmount3">1</h2>
-                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount3',{{drug3.per_day}})">&nbsp;+&nbsp;</btn>
+                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount3',{{drug3.per_day}})">+</btn>
+                    </div>
+                    <p class="m3"></p>
+                    <button class="btn btn-outline-dark ml-4" onclick="call_counter(3, 'drugAmount3');">Dispense</button>
                 </div>
-                <p class="m3"></p>
-                <button class="btn btn-outline-dark ml-4" onclick="call_counter(3, 'drugAmount3');">Dispense</button>
             </div>
         </div>
     </div>
-    
-
+    <div class="dashboardBackground"></div>
     <script>
         var d = new Date();
         document.getElementById("date").innerHTML = d.toDateString();
-        document.getElementById("time").innerHTML = d.toTimeString().split(":")[0]+':'+d.toTimeString().split(":")[1]
-        
-        function incrementValue(id, max)
-        {
+        document.getElementById("time").innerHTML = d.toTimeString().split(":")[0] + ':' + d.toTimeString().split(":")[1]
+
+        function incrementValue(id, max) {
             var value = parseInt(document.getElementById(id).innerHTML, 10);
             value = isNaN(value) ? 0 : value;
-            if(value >= max) { alert("Max pills reached.") }
+            if (value >= max) { alert("Max pills reached.") }
             else { value++; }
-            
+
             document.getElementById(id).innerHTML = value;
         }
 
-        function decrementValue(id)
-        {
+        function decrementValue(id) {
             var value = parseInt(document.getElementById(id).innerHTML, 10);
             value = isNaN(value) ? 0 : value;
-            if(value <= 0) { alert("Negative amount not allowed.") }
+            if (value <= 0) { alert("Negative amount not allowed.") }
             else { value--; }
-            
+
             document.getElementById(id).innerHTML = value;
         }
         function call_counter(slot, amount_id) {
