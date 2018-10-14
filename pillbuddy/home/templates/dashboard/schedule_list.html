@@ -1,20 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Schedule List</h1>
-
-    {% if schedule_list %}
-    <ul>
-
+<div class="container">
+  <h1>Scheduled Pills</h1>
+  <p>A list of all scheduled pill dispenses.</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Drug</th>
+        <th scope="col">Frequency</th>
+        <th scope="col">Next Dispense</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
       {% for schedule in schedule_list %}
-      <li>
-        <a href="{% url 'schedule_delete' pk=schedule.id %}">{{ schedule.drugs }}</a> ({{schedule.frequency}}){{schedule.first_dispense}}
-
-      </li>
+      <tr>
+        <th scope="row">{{ schedule.drug }}</th>
+        <td>{{ schedule.frequency }}</td>
+        <td>{{ schedule.next_dispense }}</td>
+        <td>{{ schedule.amount }}</td>
+      </tr>
       {% endfor %}
+    </tbody>
+</div>
 
-    </ul>
-    {% else %}
-      <p>There are no schedules.</p>
-    {% endif %}       
 {% endblock %}
