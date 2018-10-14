@@ -46,7 +46,7 @@
                 <div class="row">
                         <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount1')">&nbsp;-&nbsp;</btn>
                         <h2 class="mx-4" id="drugAmount1">0</h2>
-                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount1')">&nbsp;+&nbsp;</btn>
+                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount1',{{drug1.per_day}})">&nbsp;+&nbsp;</btn>
                 </div>
                 <p class="m3"></p>
                 <button class="btn btn-outline-dark  ml-4" onclick="call_counter(1);">Dispense</button>
@@ -57,9 +57,9 @@
                 <p>Daily Amount:&nbsp;{{drug2.per_day}}</p>
                 <p>Amount taken today:&nbsp;{{drug2.pillsTaken}}</p>
                 <div class="row">
-                        <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount23')">&nbsp;-&nbsp;</btn>
+                        <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount2')">&nbsp;-&nbsp;</btn>
                         <h2 class="mx-4" id="drugAmount2">0</h2>
-                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount2')">&nbsp;+&nbsp;</btn>
+                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount2',{{drug2.per_day}})">&nbsp;+&nbsp;</btn>
                 </div>
                 <p class="m3"></p>
                 <button class="btn btn-outline-dark  ml-4" onclick="call_counter(2);">Dispense</button>
@@ -72,7 +72,7 @@
                 <div class="row">
                         <btn class="btn btn-outline-dark ml-3" onclick="decrementValue('drugAmount3')">&nbsp;-&nbsp;</btn>
                         <h2 class="mx-4" id="drugAmount3">0</h2>
-                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount3')">&nbsp;+&nbsp;</btn>
+                        <btn class="btn btn-outline-dark" class="elementBorder" onclick="incrementValue('drugAmount3',{{drug3.per_day}})">&nbsp;+&nbsp;</btn>
                 </div>
                 <p class="m3"></p>
                 <button class="btn btn-outline-dark ml-4" onclick="call_counter(3);">Dispense</button>
@@ -86,11 +86,11 @@
         document.getElementById("date").innerHTML = d.toDateString();
         document.getElementById("time").innerHTML = d.toTimeString().split(":")[0]+':'+d.toTimeString().split(":")[1]
         
-        function incrementValue(id)
+        function incrementValue(id, max)
         {
             var value = parseInt(document.getElementById(id).innerHTML, 10);
             value = isNaN(value) ? 0 : value;
-            if(value >= 4) { alert("Max 4 pills.") }
+            if(value >= max) { alert("Max pills reached.") }
             else { value++; }
             
             document.getElementById(id).innerHTML = value;
@@ -103,7 +103,7 @@
             if(value <= 0) { alert("Negative amount not allowed.") }
             else { value--; }
             
-            document.getElementById(id).innerHTML = value
+            document.getElementById(id).innerHTML = value;
         }
     </script>
 </body>
