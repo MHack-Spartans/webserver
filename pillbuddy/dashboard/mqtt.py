@@ -18,6 +18,10 @@ def publish_dispense_now(slot, number):
     }
     mqttc.publish("dispense/now", payload=json.dumps(msg), qos=0)
 
+def publish_buzzer():
+    msg = { "buzzer": True }
+    mqttc.publish("dispense/buzzer", payload=json.dumps(msg), qos=0)
+
 mqttc = paho.Client()
 mqttc.on_connect = on_connect
 mqttc.on_message = on_message

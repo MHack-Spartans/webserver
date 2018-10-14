@@ -1,8 +1,17 @@
 {% extends "base.html" %}
+
 {% block content %}
+
+<div class="container">
+  <h1>Add Pill Dispense to Schedule</h1>
   <form action="" method="post">
     {% csrf_token %}
-    {{ thing }}
-    <input type="submit" value="Submit">
+    <table>
+      {{ thing }}
+    </table>
+    
+    <input type="submit" class="btn btn-outline-dark" value="Submit">
   </form>
+</div>
+
 {% endblock %}

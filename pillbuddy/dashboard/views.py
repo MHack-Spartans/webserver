@@ -39,6 +39,7 @@ def dashboard(request):
             if a < b:
                 send = item
                 twilio.send(send.frequency, send.drug)
+                mqtt.publish_buzzer()
     if send is not None:
         if send.frequency == 'Weekly':
             send.next_dispense = send.next_dispense+timedelta(days=7)
