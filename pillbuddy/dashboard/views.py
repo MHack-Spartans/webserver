@@ -5,8 +5,23 @@ from . import mqtt
 from datetime import datetime,timedelta
 from dashboard.models import Drug
 from dashboard.models import Schedule
+from dashboard.models import Reset
 
 def dashboard(request):
+    try:
+        a = Reset.objects.get(name = '1')
+    except:
+        a = Reset.objects.create(name = '1', val = 'false')
+        a.save()
+    if datetime.now().hour == 0 and a.reset == 'false':
+        for item in Drug.objects.all():
+            item.pillsTaken = 0
+        a.val = 'true'
+    if datetime.now().hour != 0:
+        a.val = 'false'
+    a.save()
+
+
     drug1 = Drug.objects.get(slot = 1)
     drug2 = Drug.objects.get(slot = 2)
     drug3 = Drug.objects.get(slot = 3)

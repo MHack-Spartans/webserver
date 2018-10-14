@@ -16,3 +16,7 @@ class Schedule(models.Model):
     next_dispense = models.DateTimeField(default = datetime.now())
     amount = models.IntegerField(default=1)
     objects = models.Manager()
+
+class Reset(models.Model):
+    name = models.CharField(max_length = 30, default = 'name')
+    val = models.CharField(max_length = 30, default = 'false')

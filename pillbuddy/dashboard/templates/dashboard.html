@@ -102,7 +102,6 @@
         function incrementValue(id, max, taken) {
             var value = parseInt(document.getElementById(id).innerHTML, 10);
             value = isNaN(value) ? 0 : value;
-            alert(taken);
             if (value >= max || taken + value >= max) 
             { 
                 value = 0;
