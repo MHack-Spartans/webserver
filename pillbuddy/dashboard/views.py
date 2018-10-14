@@ -38,12 +38,12 @@ def dashboard(request):
             if a < b:
                 send = item
     if send is not None:
-        if send.frequency == 'weekly':
+        if send.frequency == 'Weekly':
             send.next_dispense = send.next_dispense+timedelta(days=7)
         else:
             send.next_dispense = send.next_dispense+timedelta(days=1)
         send.save()
-        drug = {'slot' : Drug.objects.get(name = send.drug).slot}
+        drug = {'slot' : Drug.objects.get(name = send.drug.replace('"','')).slot}
     return render(request, 'dashboard.html', {'drug1':drug1,'drug2':drug2,'drug3':drug3,'notify':send,'slot':drug})
 
 def dispense(request, slot, amount):
