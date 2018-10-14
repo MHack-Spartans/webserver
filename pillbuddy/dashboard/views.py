@@ -66,7 +66,7 @@ def dispense(request, slot, amount):
                 send = item
                 print(send)
     if send is not None:
-        if send.frequency == 'weekly':
+        if send.frequency == 'Weekly':
             send.next_dispense = send.next_dispense+timedelta(days=7)
         else:
             send.next_dispense = send.next_dispense+timedelta(days=1)
