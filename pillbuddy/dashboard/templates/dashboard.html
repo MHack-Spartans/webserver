@@ -114,6 +114,8 @@
             $.get('{{ request.get_full_path }}dispense/' + slot + '/' + amount + '/', function (data) {
                 //alert("Dispense request sent.");
             });
+            location.reload();
+
         }
     </script>
 </body>
