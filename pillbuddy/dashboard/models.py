@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 class Drug(models.Model):
     name = models.CharField(max_length=30)
@@ -12,6 +13,6 @@ class Drug(models.Model):
 class Schedule(models.Model):
     drug = models.CharField(max_length = 30, default = 'advil')
     frequency = models.CharField(max_length=30)
-    next_dispense = models.DateField()
+    next_dispense = models.DateTimeField(default = datetime.now())
     amount = models.IntegerField(default=1)
     objects = models.Manager()
