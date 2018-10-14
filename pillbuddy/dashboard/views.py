@@ -12,5 +12,8 @@ def dashboard(request):
 
 def dispense(request, slot, amount):
     print("Dispense slot:", slot)
+    d = Drug.objects.get(slot = slot)
+    d.pillsTaken += amount
+    d.save()
     mqtt.publish_dispense_now(slot, amount)
     return HttpResponse("")

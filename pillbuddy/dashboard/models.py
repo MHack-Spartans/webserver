@@ -10,7 +10,8 @@ class Drug(models.Model):
 
 
 class Schedule(models.Model):
-    drugs = models.TextField(null=True)
+    drug = models.CharField(max_length = 30, default = 'advil')
     frequency = models.CharField(max_length=30)
-    first_dispense = models.DateField()
+    next_dispense = models.DateField()
+    amount = models.IntegerField(default=1)
     objects = models.Manager()
