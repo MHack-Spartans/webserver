@@ -6,6 +6,7 @@ from datetime import datetime,timedelta
 from dashboard.models import Drug
 from dashboard.models import Schedule
 import pytz
+from . import twilio
 
 from dashboard.models import Reset
 
@@ -37,6 +38,7 @@ def dashboard(request):
             b = utc.localize(datetime.now()) 
             if a < b:
                 send = item
+                twilio.send(send.frequency, send.drug)
     if send is not None:
         if send.frequency == 'weekly':
             send.next_dispense = send.next_dispense+timedelta(days=7)
