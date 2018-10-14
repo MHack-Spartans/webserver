@@ -15,9 +15,9 @@
         }
            var amount = "{{notify.amount}}";
            var name = "{{notify.drug}}";
-           var slot = "{{slot.slot}}"
-           if(amount != undefined){
-            var r = confirm("You need to take "+ amount + " capsules of " + name.replace("&quot;",'') + " press okay to dispense");
+           var slot = "{{slot.slot}}";
+           if(amount > 0){
+            var r = confirm("You need to take "+ amount + " capsules of " + name.replace("&quot;",'').replace("&quot;",'') + " press okay to dispense");
             if (r == true) {
                 call_counter2(slot, amount)
             }
