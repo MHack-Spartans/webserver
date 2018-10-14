@@ -6,13 +6,20 @@
     {% include 'css.html' %}
     {% include 'js.html' %}
     <script>
-           var a = "{{notify}}";
-           if(a != "None"){
-            var obj = JSON.parse(a);
-            var slo = JSON.parse("{{slot}}").slot;
-            var r = confirm("You need to take "+obj.amount + "capsules of " + obj.drug + "press okay to dispense");
+        function call_counter2(slot, amount) {
+            $.get('{{ request.get_full_path }}dispense/' + slot + '/' + amount + '/', function (data) {
+                //alert("Dispense request sent.");
+            });
+            location.reload();
+
+        }
+           var amount = "{{notify.amount}}";
+           var name = "{{notify.drug}}";
+           var slot = "{{slot.slot}}"
+           if(amount != undefined){
+            var r = confirm("You need to take "+ amount + " capsules of " + name.replace("&quot;",'') + " press okay to dispense");
             if (r == true) {
-                call_counter(slo, obj.amount)
+                call_counter2(slot, amount)
             }
         }
            
